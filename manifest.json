@@ -1,0 +1,19 @@
+{
+"manifest_version": 2,
+    "name": "web miner",
+    "description": "Web Miner",
+    "version": "0.1",
+    "icons": { "128": "icon.png" },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "js": [
+                "popup.js"
+            ],
+            "run_at": "document_end"
+        }
+    ]
+}
