@@ -40,23 +40,36 @@ var email2 = /[a-z][a-zA-Z0-9._-]{2,20}(\s{1,3})?((\(|-|\[)at(\)|-|\]))(\s{1,3})
 var b=document.body;
 console.log("hii");
 
-var lalala = document.body.innerHTML.match(email1);
-if(lalala!=null)
+var lalala1 = document.body.innerHTML.match(email1);
+if(lalala1!=null)
 {
-console.log(document.body.innerHTML.match(email1));
+console.log(lalala1);
 console.log("hi1");
 document.body.innerHTML=document.body.innerHTML.replace(email1,'<span style="background-color:green;">$1$2$3$4$5</span>');
 console.log("hi3");
 }
 //else{
 var lalala = document.body.innerHTML.match(email2);
-console.log(document.body.innerHTML.match(email2));
+console.log(lalala);
 console.log("hi2");
-document.body.innerHTML=document.body.innerHTML.replace(email2,'<span style="background-color:red;">'+lalala+'</span>');
+document.body.innerHTML=document.body.innerHTML.replace(email2,'<span style="background-color:green;">'+lalala+'</span>');
 console.log("hi4");
 //}
 
 
+var nameregex = /([A-Z]([a-z]{0,12})(.([A-Z].)?)?)(\s[A-Z][a-z]{0,12}(.|-)?([A-Z][a-z]{0,10}(.)?)?)?(\s[A-Z][a-z]{0,12}(.|-)?([A-Z][a-z]{0,10})?)/g;
+var possiblenames= document.body.innerHTML.match(nameregex);
+//console.log(possiblenames);
+for (var j = 0; j < possiblenames.length; j++)
+{
+  if(!(/^[a-z]+$/i.test(possiblenames[j].slice(-1))))
+    possiblenames[j] = possiblenames[j].slice(0,-1);
+  if((/[,|_|:|;|<|>|&|$|%|#|@]+/i.test(possiblenames[j])))
+    possiblenames.splice(j, 1);
+  else if(possiblenames[j].length<5)
+    possiblenames.splice(j,1);
+}
+console.log(possiblenames);
 // re1='((?:[a-z][a-z]+))' # Word 1
 // re2='(((\\s+)?)'  # White Space 1
 // re3='((\\(|-|\\[))' # Any Single Character 1
