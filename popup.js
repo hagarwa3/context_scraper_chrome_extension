@@ -1,3 +1,4 @@
+worddict = {};
 // var elements = document.getElementsByTagName('*');
 
 // for (var i = 0; i < elements.length; i++) 
@@ -59,17 +60,39 @@ console.log("hi4");
 
 var nameregex = /([A-Z]([a-z]{0,12})(.([A-Z].)?)?)(\s[A-Z][a-z]{0,12}(.|-)?([A-Z][a-z]{0,10}(.)?)?)?(\s[A-Z][a-z]{0,12}(.|-)?([A-Z][a-z]{0,10})?)/g;
 var possiblenames= document.body.innerHTML.match(nameregex);
+var newnames = [];
 //console.log(possiblenames);
 for (var j = 0; j < possiblenames.length; j++)
 {
   if(!(/^[a-z]+$/i.test(possiblenames[j].slice(-1))))
     possiblenames[j] = possiblenames[j].slice(0,-1);
-  if((/[,|_|:|;|<|>|&|$|%|#|@]+/i.test(possiblenames[j])))
-    possiblenames.splice(j, 1);
-  else if(possiblenames[j].length<5)
-    possiblenames.splice(j,1);
+  if((/[,|_|:|;|<|>|&|$|%|#|@]+/i.test(possiblenames[j]))|| (possiblenames[j].length<5))
+    var ok = 0;
+  else
+  	newnames.push(possiblenames[j])
 }
+//console.log(possiblenames);
+possiblenames = newnames;
 console.log(possiblenames);
+var updatenames = []
+
+for (var j = 0; j < possiblenames.length; j++)
+{
+	var spl = possiblenames[j].split(" ");
+	var hmm = 1
+	for (var i = 0; i<spl.length; i++)
+	{
+		if(spl[i] in worddict)
+		{
+			hmm = 0;
+			break;
+		}
+	}
+	if(hmm!=0)
+		updatenames.push(possiblenames[j]);
+
+}
+possiblenames = updatenames;
 // re1='((?:[a-z][a-z]+))' # Word 1
 // re2='(((\\s+)?)'  # White Space 1
 // re3='((\\(|-|\\[))' # Any Single Character 1
