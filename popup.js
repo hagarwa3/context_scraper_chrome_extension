@@ -35,6 +35,45 @@ console.log(document.body.innerHTML.match(p));
 document.body.innerHTML=document.body.innerHTML.replace(p,'<span style="background-color:yellow;">$1$2$3$4$5$6$7</span>');
 console.log("hi");
 
+var email1 = /([a-z][a-zA-Z0-9._-]{2,20}@)([a-zA-Z]+)(.([a-zA-Z]+))?(.([a-zA-Z]{2,6}))/g;
+var email2 = /[a-z][a-zA-Z0-9._-]{2,20}(\s{1,3})?((\(|-|\[)at(\)|-|\]))(\s{1,3})?([a-zA-Z]+\.)?([a-zA-Z]+)(\s{1,3})?((\(|-|\[)dot(\)|-|\]))(\s{1,3})?([a-zA-Z]{2,6})/g;
+var b=document.body;
+console.log("hii");
+
+var lalala = document.body.innerHTML.match(email1);
+if(lalala!=null)
+{
+console.log(document.body.innerHTML.match(email1));
+console.log("hi1");
+document.body.innerHTML=document.body.innerHTML.replace(email1,'<span style="background-color:green;">$1$2$3$4$5</span>');
+console.log("hi3");
+}
+//else{
+var lalala = document.body.innerHTML.match(email2);
+console.log(document.body.innerHTML.match(email2));
+console.log("hi2");
+document.body.innerHTML=document.body.innerHTML.replace(email2,'<span style="background-color:red;">'+lalala+'</span>');
+console.log("hi4");
+//}
+
+
+// re1='((?:[a-z][a-z]+))' # Word 1
+// re2='(((\\s+)?)'  # White Space 1
+// re3='((\\(|-|\\[))' # Any Single Character 1
+// re4='((?:[a-z][a-z]+))' # Word 2
+// re5='((\\)|-|\\]))' # Any Single Character 2
+// re6='(( ?))'  # Any Single Character 3
+// re7='((?:[a-z][a-z1-9(.)]+))' # Word 3
+// re8='(( )'  # Any Single Character 4
+// re9='((\\(|-|\\[))' # Any Single Character 5
+// re10='(dot)'  # Word 4
+// re11='((\\)|-|\\]))'  # Any Single Character 6
+// re12='( )'  # White Space 2
+// re13='((edu|com))'  # Word 5
+// re14 = '|@)'
+// re15 = '|.)'
+// email_pattern = re.compile(re1+((re2+re3+re4+re5+re6+re14))+re7+((re8+re9+re10+re11+re12+re15))+re13,re.IGNORECASE|re.DOTALL)
+
  // (\D?)
  //    (\d{3})     # area code is 3 digits (e.g. '800')
  //    (\D{,6}?)         # optional separator is any number of non-digits
