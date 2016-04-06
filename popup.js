@@ -5,6 +5,42 @@ for (var i = 0, length = words.length; i < length; i += 2) {
   worddict[words[i]] = true;
 }
 
+function getEditDistance(a, b) {
+  if(a.length === 0) return b.length; 
+  if(b.length === 0) return a.length; 
+
+  var matrix = [];
+
+  // increment along the first column of each row
+  var i;
+  for(i = 0; i <= b.length; i++){
+    matrix[i] = [i];
+  }
+
+  // increment each column in the first row
+  var j;
+  for(j = 0; j <= a.length; j++){
+    matrix[0][j] = j;
+  }
+
+  // Fill in the rest of the matrix
+  for(i = 1; i <= b.length; i++){
+    for(j = 1; j <= a.length; j++){
+      if(b.charAt(i-1) == a.charAt(j-1)){
+        matrix[i][j] = matrix[i-1][j-1];
+      } else {
+        matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, // substitution
+                                Math.min(matrix[i][j-1] + 1, // insertion
+                                         matrix[i-1][j] + 1)); // deletion
+      }
+    }
+  }
+
+  return matrix[b.length][a.length];
+};
+
+
+
 // var elements = document.getElementsByTagName('*');
 
 // for (var i = 0; i < elements.length; i++) 
@@ -100,6 +136,46 @@ for (var j = 0; j < newnames.length; j++)
 }
 possiblenames = updatenames;
 console.log(updatenames);
+
+// if ' ' in kk:
+//     jjj = kk
+//     kk = kk.split(' ')
+//     kk = kk[0]
+// elif '@' in kk:
+//     jjj=kk
+//     kk = kk.split('@')
+//     kk = kk[0]
+// lencheck = lcs(kk, namefound[count].lower())
+
+var part1 = lalala1
+var matchedname;
+var part1copy;
+if ( part1.indexOf(' ') > -1 )
+{
+	part1copy = part1;
+	part1 = part1.split(" ");
+	part1 = part1[0]
+} 
+else if( part1.indexOf('@') > -1 )
+{
+	part1copy = part1;
+	part1 = part1.split("@");
+	part1 = part1[0]
+}
+var dist = 1000;
+matchedname = "placeholder";
+for (var j = 0; j < updatenames.length; j++)
+{
+	var spl = newnames[j];//.split(" ");
+	var currdist = getEditDistance(part1, spl);
+	if(currdist<dist)
+	{
+		dist = currdist;
+		matchedname = spl;
+	}
+}
+
+console.log(matchedname);
 // re1='((?:[a-z][a-z]+))' # Word 1
 // re2='(((\\s+)?)'  # White Space 1
 // re3='((\\(|-|\\[))' # Any Single Character 1
