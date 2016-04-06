@@ -152,7 +152,7 @@ var part1 = lalala[0];
 else if(lalala1!=null && lalala1.length>0)
 var part1 = lalala1[0];
 else
-var part1 = "no email detected";
+var part1 = "noemaildetected";
 var matchedname;
 var part1copy;
 if ( part1.indexOf(' ') > -1 )
