@@ -115,7 +115,7 @@ for (var j = 0; j < possiblenames.length; j++)
 }
 //console.log(possiblenames);
 possiblenames = newnames;
-console.log(newnames);
+//console.log(newnames);
 var updatenames = []
 
 for (var j = 0; j < newnames.length; j++)
@@ -147,7 +147,12 @@ console.log(updatenames);
 //     kk = kk[0]
 // lencheck = lcs(kk, namefound[count].lower())
 
-var part1 = lalala1
+if((lalala!=null && lalala.length>0) && (lalala1==null || lalala1.length ==0))
+var part1 = lalala[0];
+else if(lalala1!=null && lalala1.length>0)
+var part1 = lalala1[0];
+else
+var part1 = "no email detected";
 var matchedname;
 var part1copy;
 if ( part1.indexOf(' ') > -1 )
@@ -164,6 +169,7 @@ else if( part1.indexOf('@') > -1 )
 }
 var dist = 1000;
 matchedname = "placeholder";
+console.log(part1);
 for (var j = 0; j < updatenames.length; j++)
 {
 	var spl = newnames[j];//.split(" ");
